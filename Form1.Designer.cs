@@ -49,6 +49,7 @@
             DepositBtn.TabIndex = 0;
             DepositBtn.Text = "Deposit";
             DepositBtn.UseVisualStyleBackColor = true;
+            DepositBtn.Click += DepositBtn_Click;
             // 
             // WithdrawBtn
             // 
@@ -59,6 +60,7 @@
             WithdrawBtn.TabIndex = 1;
             WithdrawBtn.Text = "Withdraw";
             WithdrawBtn.UseVisualStyleBackColor = true;
+            WithdrawBtn.Click += WithdrawBtn_Click;
             // 
             // label1
             // 
@@ -87,7 +89,9 @@
             // 
             // AmountNum
             // 
+            AmountNum.Increment = new decimal (new int[] { 50, 0, 0, 0 });
             AmountNum.Location = new Point (119, 347);
+            AmountNum.Maximum = new decimal (new int[] { 1000000, 0, 0, 0 });
             AmountNum.Name = "AmountNum";
             AmountNum.Size = new Size (201, 35);
             AmountNum.TabIndex = 5;
@@ -100,6 +104,7 @@
             BankAccountsGrid.Name = "BankAccountsGrid";
             BankAccountsGrid.Size = new Size (464, 310);
             BankAccountsGrid.TabIndex = 6;
+            BankAccountsGrid.CellContentClick += BankAccountsGrid_CellContentClick;
             // 
             // CreateAccountBtn
             // 
@@ -110,6 +115,7 @@
             CreateAccountBtn.TabIndex = 7;
             CreateAccountBtn.Text = "Create Account";
             CreateAccountBtn.UseVisualStyleBackColor = true;
+            CreateAccountBtn.Click += CreateAccountBtn_Click;
             // 
             // Form1
             // 

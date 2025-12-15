@@ -21,8 +21,11 @@ namespace BankAccountWFA
             if (string.IsNullOrEmpty (OwnerTxt.Text))
                 return;
 
-            BankAccount bankAccount = new BankAccount (OwnerTxt.Text);
-            _bankAccountsList.Add (bankAccount);
+            if (InterestRateNum.Value == 0)            
+                _bankAccountsList.Add (new BankAccount (OwnerTxt.Text));            
+            else                            
+                _bankAccountsList.Add (new SavingsAccount (OwnerTxt.Text, InterestRateNum.Value));
+            
 
             RefreshGrid ();
             OwnerTxt.Text = string.Empty;

@@ -2,8 +2,7 @@ namespace BankAccountWFA
 {
     public partial class Form1 : Form
     {
-        private List<BankAccount> _bankAccountsList = new List<BankAccount> ();
-        private BankAccount _bankAccountSelected;
+        private List<BankAccount> _bankAccountsList = new List<BankAccount> ();        
         public Form1 ()
         {
             InitializeComponent ();
@@ -14,8 +13,7 @@ namespace BankAccountWFA
             bankAccount = new BankAccount ("Willy");
             _bankAccountsList.Add (bankAccount);
 
-            BankAccountsGrid.DataSource = _bankAccountsList;
-            _bankAccountSelected = _bankAccountsList[0];
+            BankAccountsGrid.DataSource = _bankAccountsList;            
         }
 
         private void CreateAccountBtn_Click (object sender, EventArgs e)
@@ -38,19 +36,27 @@ namespace BankAccountWFA
 
         private void DepositBtn_Click (object sender, EventArgs e)
         {
-            _bankAccountSelected.Balance += AmountNum.Value;
-            RefreshGrid ();
+            if (BankAccountsGrid.SelectedRows.Count == 1)
+            {
+                BankAccount? bankAccountSelected = BankAccountsGrid.SelectedRows[0].DataBoundItem as BankAccount;
+                string msg = bankAccountSelected.Deposit(AmountNum.Value);
+                AmountNum.Value = BankAccount.MinimunAmount;
+                RefreshGrid ();
+                MessageBox.Show(msg);
+            }
         }
-
-        private void BankAccountsGrid_CellContentClick (object sender, DataGridViewCellEventArgs e)
-        {
-            _bankAccountSelected = _bankAccountsList[e.RowIndex];
-        }
+        
 
         private void WithdrawBtn_Click (object sender, EventArgs e)
         {
-            _bankAccountSelected.Balance -= AmountNum.Value;
-            RefreshGrid ();
+            if (BankAccountsGrid.SelectedRows.Count == 1)
+            {
+                BankAccount? bankAccountSelected = BankAccountsGrid.SelectedRows[0].DataBoundItem as BankAccount;
+                string msg = bankAccountSelected.Withdraw(AmountNum.Value);
+                AmountNum.Value = BankAccount.MinimunAmount;
+                RefreshGrid ();
+                MessageBox.Show (msg);
+            }
         }
     }
 }

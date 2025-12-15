@@ -95,6 +95,7 @@
             AmountNum.Name = "AmountNum";
             AmountNum.Size = new Size (201, 35);
             AmountNum.TabIndex = 5;
+            AmountNum.Value = new decimal (new int[] { 50, 0, 0, 0 });
             // 
             // BankAccountsGrid
             // 
@@ -104,7 +105,6 @@
             BankAccountsGrid.Name = "BankAccountsGrid";
             BankAccountsGrid.Size = new Size (464, 310);
             BankAccountsGrid.TabIndex = 6;
-            BankAccountsGrid.CellContentClick += BankAccountsGrid_CellContentClick;
             // 
             // CreateAccountBtn
             // 
